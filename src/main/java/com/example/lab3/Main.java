@@ -27,6 +27,7 @@ public class Main extends Application {
     static List<Corner> snake = new ArrayList<>();
     static Dir direction = Dir.left;
     static boolean gameOver = false;
+    static boolean gameWin = false;
     static Random rand = new Random();
 
     public enum Dir {
@@ -87,12 +88,21 @@ public class Main extends Application {
                 if (key.getCode() == KeyCode.D) {
                     direction = Dir.right;
                 }
-
+                if (key.getCode() == KeyCode.UP) {
+                    direction = Dir.up;
+                }
+                if (key.getCode() == KeyCode.LEFT) {
+                    direction = Dir.left;
+                }
+                if (key.getCode() == KeyCode.DOWN) {
+                    direction = Dir.down;
+                }
+                if (key.getCode() == KeyCode.RIGHT) {
+                    direction = Dir.right;
+                }
             });
 
             // добавление частей змейки
-            snake.add(new Corner(width / 2, height / 2));
-            snake.add(new Corner(width / 2, height / 2));
             snake.add(new Corner(width / 2, height / 2));
 
             primaryStage.setScene(scene);
@@ -109,6 +119,13 @@ public class Main extends Application {
             gc.setFill(Color.RED);
             gc.setFont(new Font("", 50));
             gc.fillText("Игра окончена", 100, 250);
+            return;
+        }
+
+        if (gameWin) {
+            gc.setFill(Color.GREEN);
+            gc.setFont(new Font("", 50));
+            gc.fillText("Победа", 100, 250);
             return;
         }
 
@@ -149,6 +166,8 @@ public class Main extends Application {
         if (foodX == snake.get(0).x && foodY == snake.get(0).y) {
             snake.add(new Corner(-1, -1));
             newFood();
+            if (speed == 16)
+                gameWin = true;
         }
 
         // самоуничтожение
