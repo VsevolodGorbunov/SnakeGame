@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import com.sun.javafx.scene.control.IntegerField?>
+<?import javafx.scene.text.Text?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.lab3.Menu"
+            prefHeight="400.0" prefWidth="600.0">
+    <Button onAction="#play" text="Играть" layoutX="100" layoutY="50" minWidth="200" prefHeight="40"/>
+    <Label layoutX="90" layoutY="105" text="Ширина"/>
+    <TextField fx:id="fieldX" layoutX="150" layoutY="100" text="20"/>
+    <Label layoutX="90" layoutY="135" text="Высота"/>
+    <TextField fx:id="fieldY" layoutX="150" layoutY="130" text="15"/>
+
+</AnchorPane>
