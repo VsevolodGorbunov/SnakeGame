@@ -17,10 +17,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 public class Main extends Application {
-    static int speed = 5;
-    static int foodcolor = 0;
-    static int width = 20;
-    static int height = 20;
+    static int speed = 5; //скорость
+    static int foodcolor = 0; //цвет еды
+    static int width = 60; //ширина поля (максимум 60)
+    static int height = 30; //высота поля (не трогать)
     static int foodX = 0;
     static int foodY = 0;
     static int cornersize = 25;
@@ -76,28 +76,16 @@ public class Main extends Application {
 
             // управление
             scene.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
-                if (key.getCode() == KeyCode.W) {
+                if ((key.getCode() == KeyCode.W || key.getCode() == KeyCode.UP) && direction != Dir.down) {
                     direction = Dir.up;
                 }
-                if (key.getCode() == KeyCode.A) {
+                if ((key.getCode() == KeyCode.A || key.getCode() == KeyCode.LEFT) && direction != Dir.right) {
                     direction = Dir.left;
                 }
-                if (key.getCode() == KeyCode.S) {
+                if ((key.getCode() == KeyCode.S || key.getCode() == KeyCode.DOWN) && direction != Dir.up) {
                     direction = Dir.down;
                 }
-                if (key.getCode() == KeyCode.D) {
-                    direction = Dir.right;
-                }
-                if (key.getCode() == KeyCode.UP) {
-                    direction = Dir.up;
-                }
-                if (key.getCode() == KeyCode.LEFT) {
-                    direction = Dir.left;
-                }
-                if (key.getCode() == KeyCode.DOWN) {
-                    direction = Dir.down;
-                }
-                if (key.getCode() == KeyCode.RIGHT) {
+                if ((key.getCode() == KeyCode.D || key.getCode() == KeyCode.RIGHT) && direction != Dir.left) {
                     direction = Dir.right;
                 }
             });
