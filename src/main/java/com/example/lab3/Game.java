@@ -21,7 +21,11 @@ import java.util.List;
 import java.util.Random;
 
 public class Game extends Application {
-    int speed = 5; //скорость
+//    int speed = 5; //скорость
+    boolean isGameScore = false; // есть ли счет
+    int gameScore = 0; //счет для победы
+    int score = 0; //счет
+    int speed = 1; //скорость
     int foodcolor = 0; //цвет еды
     int width = 60; //ширина поля (максимум 60)
     int height = 30; //высота поля (не трогать)
@@ -39,9 +43,17 @@ public class Game extends Application {
     }
 
     public Game(){}
-    public Game(int w,int h) {
+    public Game(int w,int h, int s, int gs) {
         width = w;
         height = h;
+        speed = s+5;
+        gameScore = gs;
+        if (gameScore > 0){
+            isGameScore = true;
+        }
+        else{
+            isGameScore = false;
+        }
     }
 
     public static class Corner {
@@ -134,6 +146,7 @@ public class Game extends Application {
             gc.setFill(Color.RED);
             gc.setFont(new Font("", 50));
             gc.fillText("Игра окончена", 100, 250);
+            gc.fillText("Перезапуск - Esc", 80, 300);
             return;
         }
 
@@ -141,6 +154,7 @@ public class Game extends Application {
             gc.setFill(Color.GREEN);
             gc.setFont(new Font("", 50));
             gc.fillText("Победа", 100, 250);
+            gc.fillText("Попробовать еще раз - Esc", 80, 300);
             return;
         }
 
@@ -181,7 +195,7 @@ public class Game extends Application {
         if (foodX == snake.get(0).x && foodY == snake.get(0).y) {
             snake.add(new Corner(-1, -1));
             newFood();
-            if (speed == 16)
+            if (score == gameScore && isGameScore) // условие на победу
                 gameWin = true;
         }
 
@@ -199,7 +213,8 @@ public class Game extends Application {
         // счёт
         gc.setFill(Color.WHITE);
         gc.setFont(new Font("", 30));
-        gc.fillText("Счёт: " + (speed - 6), 10, 30);
+//        gc.fillText("Счёт: " + (speed - 1), 10, 30);
+        gc.fillText("Счёт: " + score, 10, 30);
 
         // рандомный цвет еды
         Color cc = Color.WHITE;
@@ -248,6 +263,7 @@ public class Game extends Application {
             }
             foodcolor = rand.nextInt(5);
             speed++;
+            score++;
             break;
 
         }

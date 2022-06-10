@@ -17,5 +17,8 @@
     <TextField fx:id="fieldX" layoutX="150" layoutY="100" text="20"/>
     <Label layoutX="90" layoutY="135" text="Высота"/>
     <TextField fx:id="fieldY" layoutX="150" layoutY="130" text="15"/>
-
+    <Label layoutX="90" layoutY="165" text="Скорость"/>
+    <TextField fx:id="speed" layoutX="150" layoutY="160" text="1"/>
+    <Label layoutX="90" layoutY="195" text="До скольки"/>
+    <TextField fx:id="gameScore" layoutX="150" layoutY="190" text="0"/>
 </AnchorPane>
